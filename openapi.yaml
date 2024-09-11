@@ -15,29 +15,16 @@ paths:
       summary: Get trust scores
       description: Retrieve trust scores from the available computation nodes
       operationId: get_trust_scores_trust_management_LoTAF_get
-      parameters:
-        - name: input_string
-          in: query
-          required: true
-          schema:
-            type: string
-            title: Input String
       responses:
         '200':
           description: Successful Response
           content:
             application/json:
               schema:
-                type: array
                 items:
                   $ref: '#/components/schemas/Trust_Score_Response'
+                type: array
                 title: Response Get Trust Scores Trust Management Lotaf Get
-        '422':
-          description: Validation Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/HTTPValidationError'
   /api/trust_management:
     get:
       tags:
@@ -52,15 +39,6 @@ paths:
               schema: {}
 components:
   schemas:
-    HTTPValidationError:
-      properties:
-        detail:
-          items:
-            $ref: '#/components/schemas/ValidationError'
-          type: array
-          title: Detail
-      type: object
-      title: HTTPValidationError
     Trust_Score_Response:
       properties:
         id:
@@ -76,24 +54,3 @@ components:
       title: Trust_Score_Response
       id: uuid1
       trust_index: 0.4
-    ValidationError:
-      properties:
-        loc:
-          items:
-            anyOf:
-              - type: string
-              - type: integer
-          type: array
-          title: Location
-        msg:
-          type: string
-          title: Message
-        type:
-          type: string
-          title: Error Type
-      type: object
-      required:
-        - loc
-        - msg
-        - type
-      title: ValidationError
