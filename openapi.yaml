@@ -23,11 +23,11 @@ paths:
           schema:
             type: string
         - name: address
-            in: query
-            description: IP address in which node to evaluate is reached
-            required: true
-            schema:
-              type: string
+          in: query
+          description: IP address in which node to evaluate is reached
+          required: true
+          schema:
+            type: string
       responses:
         '200':
           description: Successful Response
