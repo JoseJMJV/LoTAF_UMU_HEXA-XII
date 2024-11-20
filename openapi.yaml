@@ -15,6 +15,19 @@ paths:
       summary: Get trust scores
       description: Retrieve trust scores from the available computation nodes
       operationId: get_trust_scores_trust_management_LoTAF_get
+      parameters:
+        - name: id
+          in: query
+          description: Identifier of network service or resource to get Level of Trust
+          required: true
+          schema:
+            type: string
+        - name: address
+            in: query
+            description: IP address in which node to evaluate is reached
+            required: true
+            schema:
+              type: string
       responses:
         '200':
           description: Successful Response
@@ -24,7 +37,9 @@ paths:
                 items:
                   $ref: '#/components/schemas/Trust_Score_Response'
                 type: array
-                title: Response Get Trust Scores Trust Management Lotaf Get
+                title: Response Get Trust Scores Trust Management LoTAF
+        '400':
+          description: Invalid ID supplied
   /api/trust_management:
     get:
       tags:
@@ -36,7 +51,11 @@ paths:
           description: Successful Response
           content:
             application/json:
-              schema: {}
+              schema:
+                items:
+                  $ref: '#/components/schemas/Trust_Score_Response'
+                type: array
+                title: Response Get Trust Management System
 components:
   schemas:
     Trust_Score_Response:
@@ -46,6 +65,7 @@ components:
           title: Id
         trust_index:
           type: number
+          format: float
           title: Trust Index
       type: object
       required:
@@ -53,4 +73,4 @@ components:
         - trust_index
       title: Trust_Score_Response
       id: uuid1
-      trust_index: 0.4
+      trust_index: 0.764
